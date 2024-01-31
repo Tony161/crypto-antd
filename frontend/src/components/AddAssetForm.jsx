@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {Button, DatePicker, Divider, Flex, Form, Input, InputNumber, Select, Space, Typography, Result} from "antd";
+import {Button, DatePicker, Divider, Form, InputNumber, Select, Space, Result} from "antd";
 import {useCrypto} from "../context/crypto-context.jsx";
 import CoinInfo from "./CoinInfo.jsx";
 
