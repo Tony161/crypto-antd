@@ -1,0 +1,8 @@
+package*.json
+.eslintrc
+.prettierrc
+build
+docs
+node_modules
+public
+public/index.html

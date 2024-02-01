@@ -1,61 +1,51 @@
-import React, {useContext} from "react";
-import {Card, Layout, List, Statistic, Tag, Typography} from "antd";
+import React, {useContext} from 'react';
+import {Card, Layout, List, Statistic, Tag, Typography} from 'antd';
 import {ArrowDownOutlined, ArrowUpOutlined} from '@ant-design/icons';
-import {capitalize} from "../../utils.js";
-import CryptoContext from "../../context/crypto-context.jsx";
-
-const siderStyle = {
-    padding: '1rem'
-};
-
-const styleCard = {
-    marginBottom: '1rem'
-}
+import {capitalize} from '../../utils.js';
+import CryptoContext from '../../context/crypto-context.jsx';
 
 export default function AppSider() {
-   const { assets} =useContext(CryptoContext)
+    const {assets} = useContext(CryptoContext);
 
     return (
-        <Layout.Sider width="25%" style={siderStyle}>
+        <Layout.Sider width="25%" className={'sider__style'}>
             {assets.map(asset => (
-                <Card key={asset.id} style={styleCard} bordered={false}>
+                <Card key={asset.id} className={'style__card'} bordered={false}>
                     <Statistic
                         title={capitalize(asset.id)}
                         value={asset.totalAmount}
                         precision={2}
                         valueStyle={{
-                            color: asset.grow ? '#3f8600' : '#cf1322',
+                            color: asset.grow ? '#3f8600' : '#cf1322'
                         }}
-                        prefix={asset.grow ? <ArrowUpOutlined/> : <ArrowDownOutlined/>}
+                        prefix={asset.grow ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
                         suffix="$"
                     />
                     <List
                         size="small"
                         dataSource={[
-                            {title: "Total Profit", value: asset.totalProfit, withTag: true},
-                            {title: "Asset Amount", value: asset.amount, isPlain: true},
-                            // {title: "Difference", value: asset.growPercent}
+                            {title: 'Total Profit', value: asset.totalProfit, withTag: true},
+                            {title: 'Asset Amount', value: asset.amount, isPlain: true}
                         ]}
-                        renderItem={(item) => (
+                        renderItem={item => (
                             <List.Item>
                                 <span>{item.title}</span>
                                 <span>
-                                    {item.withTag &&
-                                        <Tag color={asset.grow ? "green": "red"}>
-                                            {asset.growPercent}$
-                                        </Tag>}
+                                    {item.withTag && (
+                                        <Tag color={asset.grow ? 'green' : 'red'}>{asset.growPercent}$</Tag>
+                                    )}
                                     {item.isPlain && item.value}
-                                    {!item.isPlain &&
-                                        <Typography.Text type={asset.grow ? "success" : "danger"}>
+                                    {!item.isPlain && (
+                                        <Typography.Text type={asset.grow ? 'success' : 'danger'}>
                                             {item.value.toFixed(2)}$
-                                        </Typography.Text>}
-                                    </span>
+                                        </Typography.Text>
+                                    )}
+                                </span>
                             </List.Item>
                         )}
                     />
                 </Card>
             ))}
         </Layout.Sider>
-    )
+    );
 }
-
